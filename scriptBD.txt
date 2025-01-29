@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS produto;
 DROP TABLE IF EXISTS usuario;
 
 CREATE TABLE usuario(
-   id int PRIMARY KEY,
+   username varchar(50) PRIMARY KEY,
    nome varchar(50)
 );
 
@@ -14,26 +14,26 @@ CREATE TABLE produto(
 );
 
 CREATE TABLE lance(
-   id_usuario int,
+   username varchar(50),
    codigo_produto varchar(5),
    valor_lance float,
-   PRIMARY KEY (id_usuario, codigo_produto, valor_lance),
-   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+   PRIMARY KEY (username, codigo_produto, valor_lance),
+   FOREIGN KEY (username) REFERENCES usuario(username),
    FOREIGN KEY (codigo_produto) REFERENCES produto(codigo)
 );
 
 INSERT INTO usuario
 VALUES
-  (1, "Maia Allison"),
-  (2, "Alvin Raymond"),
-  (3, "Brock Langley"),
-  (4, "Kyle Mayer"),
-  (5, "Hilary Neal"),
-  (6, "Fleur Cobb"),
-  (7, "Simone Rice"),
-  (8, "Knox Mcfarland"),
-  (9, "Perry Fulton"),
-  (10, "Kirestin Stevenson");
+  ("Maia2009", "Maia Allison"),
+  ("AlvinRay", "Alvin Raymond"),
+  ("Brockey", "Brock Langley"),
+  ("Mayle100", "Kyle Mayer"),
+  ("Hilary30", "Hilary Neal"),
+  ("FCobb", "Fleur Cobb"),
+  ("SimBean", "Simone Rice"),
+  ("McNox45", "Knox Mcfarland"),
+  ("PF440", "Perry Fulton"),
+  ("Steve09", "Kirestin Stevenson");
 
 INSERT INTO produto 
 VALUES
@@ -44,6 +44,6 @@ VALUES
 
 INSERT INTO lance
 VALUES
-  (1, "VS001", 150.80),
-  (2, "VS001", 170),
-  (1, "CD001", 840);
+  ("FCobb", "VS001", 150.80),
+  ("PF440", "VS001", 170),
+  ("FCobb", "CD001", 840);
