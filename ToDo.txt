@@ -1,0 +1,3 @@
+Funcionalidade "inserir lance no BD"
+- Falta tratamento de inputs para não colocar no bd registros incongruentes
+- Falta fazer a lógica do lance ser maior que o lance mínimo estipulado

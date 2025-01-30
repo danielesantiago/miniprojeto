@@ -1,5 +1,6 @@
 package controller;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,12 @@ public class Lanceservlet extends HttpServlet{
         lanceDao = new LanceDao();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+         
         String nome = request.getParameter("nome");
         String produto = request.getParameter("produto");
         float valor_lance = Float.parseFloat(request.getParameter("lance"));
@@ -33,12 +38,11 @@ public class Lanceservlet extends HttpServlet{
         try{
             /* Chama o método do DAO que insere os dados no BD e passa Bean encapsulando os dados */
             lanceDao.registraLance(lance);
+            out.write("Lance registrado com sucesso");
         }catch(Exception e){
             e.printStackTrace();
+            //out.write("Erro: Não foi possível registrar o lance");   //teoricamente nao precisa, só imprime o response se deu certo
         }
-
-            //redireciona a execução para uma view
-            response.sendRedirect("index.jsp");
     }
 }
 

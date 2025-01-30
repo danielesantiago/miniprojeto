@@ -1,4 +1,3 @@
-controller\Lanceservlet.class
 database\LanceDao.class
-Hello.class
+controller\Lanceservlet.class
 model\Lance.class
