@@ -18,7 +18,7 @@ function enviarLance(event){
                     alert(ajax.responseText)
                     document.getElementById("inserirLance").reset();
                 }
-            else alert("Erro ao enviar lance!!!")
+            else alert(ajax.responseText)
             }
         }
         

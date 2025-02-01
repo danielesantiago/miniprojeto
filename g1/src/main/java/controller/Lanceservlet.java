@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Lance;
+import model.LanceService;
 import database.LanceDao;
 
 @WebServlet("/lanceservlet")
@@ -30,6 +31,17 @@ public class Lanceservlet extends HttpServlet{
         String produto = request.getParameter("produto");
         float valor_lance = Float.parseFloat(request.getParameter("lance"));
 
+        LanceService lanceService = new LanceService();
+        if (!lanceService.validarUsername(nome)){
+            out.write("Erro: esse usuário não está cadastrado.");
+            return;
+        }
+
+        if (!lanceService.validarCodigo(produto))
+        {
+            out.write("Erro: esse produto não está cadastrado.");
+            return;
+        }
         Lance lance = new Lance();
         lance.setNome(nome);
         lance.setProduto(produto);
@@ -38,10 +50,10 @@ public class Lanceservlet extends HttpServlet{
         try{
             /* Chama o método do DAO que insere os dados no BD e passa Bean encapsulando os dados */
             lanceDao.registraLance(lance);
-            out.write("Lance registrado com sucesso");
+            out.write("Lance registrado com sucesso.");
         }catch(Exception e){
             e.printStackTrace();
-            //out.write("Erro: Não foi possível registrar o lance");   //teoricamente nao precisa, só imprime o response se deu certo
+            out.write("Erro: Não foi possível registrar o lance.");
         }
     }
 }
