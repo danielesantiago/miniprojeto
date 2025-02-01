@@ -11,6 +11,41 @@ import java.util.List;
 import model.Lance;
 
 public class LanceDao{
+
+    public List<Lance> buscarLances() throws ClassNotFoundException {
+        String SEARCH_LANCES_SQL = "SELECT * FROM lance ORDER BY valor_lance DESC";
+        List<Lance> lances = new ArrayList<>();
+        ResultSet result;
+    
+        try {
+            // Carrega o driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+    
+            // Conectar ao banco de dados
+            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            String user = "freedb_nicolasbenitiz";
+            String password = "N7QFUh87habd$WC";
+    
+            Connection conn = DriverManager.getConnection(connectionUrl, user, password);
+    
+            PreparedStatement preparedStatement = conn.prepareStatement(SEARCH_LANCES_SQL);
+            result = preparedStatement.executeQuery();
+            
+            while (result.next()) {
+                Lance lance = new Lance();
+                lance.setNome(result.getString("username"));
+                lance.setProduto(result.getString("codigo_produto"));
+                lance.setValor_lance(result.getFloat("valor_lance"));
+                lances.add(lance);
+            }
+    
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return lances;
+    }
+    
+    
     public int registraLance(Lance lance) throws ClassNotFoundException{
         String INSERT_LANCES_SQL = "INSERT INTO lance" +
         " (username, codigo_produto, valor_lance) VALUES (?, ?, ?);";
@@ -18,14 +53,15 @@ public class LanceDao{
     
         try{
             // Carrega driver
-            Class.forName("com.mysql.jdbc.Driver");
-        
-            // Dados da conexão
-            String connection = "jdbc:mysql://localhost/portal_lances";
-            String user = "root", senha = "";
-        
-            // Criando conexão
-            Connection conn =  DriverManager.getConnection(connection, user, senha);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conectar ao banco de dados
+            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            String user = "freedb_nicolasbenitiz";
+            String password = "N7QFUh87habd$WC";
+
+            Connection conn = DriverManager.getConnection(connectionUrl, user, password);
+
         
             // Cria statement para executar comando SQL
             PreparedStatement preparedStatement = conn.prepareStatement(INSERT_LANCES_SQL);
@@ -50,14 +86,15 @@ public class LanceDao{
     
         try{
             // Carrega driver
-            Class.forName("com.mysql.jdbc.Driver");
-        
-            // Dados da conexão
-            String connection = "jdbc:mysql://localhost/portal_lances";
-            String user = "root", senha = "";
-        
-            // Criando conexão
-            Connection conn =  DriverManager.getConnection(connection, user, senha);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conectar ao banco de dados
+            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            String user = "freedb_nicolasbenitiz";
+            String password = "N7QFUh87habd$WC";
+
+            Connection conn = DriverManager.getConnection(connectionUrl, user, password);
+
         
             // Cria statement para executar comando SQL
             PreparedStatement preparedStatement = conn.prepareStatement(SEARCH_USERNAME_SQL);
@@ -82,11 +119,11 @@ public class LanceDao{
     
         try{
             // Carrega driver
-            Class.forName("com.mysql.jdbc.Driver");
-        
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Dados da conexão
-            String connection = "jdbc:mysql://localhost/portal_lances";
-            String user = "root", senha = "";
+            String connection = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances";
+            String user = "freedb_nicolasbenitiz";
+            String senha = "N7QFUh87habd$WC";
         
             // Criando conexão
             Connection conn =  DriverManager.getConnection(connection, user, senha);

@@ -4,6 +4,7 @@ public class Lance {
     public String nome;
     public String produto;
     public float valor_lance;
+    
 
     public void setNome(String nome){
         this.nome = nome;

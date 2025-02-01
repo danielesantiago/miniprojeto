@@ -28,3 +28,50 @@ function enviarLance(event){
 
     }
 }
+
+
+function atualizarLances() {
+    const ajax = initajax();
+
+    if (ajax) {
+        ajax.onreadystatechange = function () {
+            if (ajax.readyState === 4) {
+                if (ajax.status === 200) {
+
+                    const data = JSON.parse(ajax.responseText);
+
+                    const lancesSection = document.getElementById('lances');
+
+                    lancesSection.innerHTML = '<h2>Lances Feitos</h2>';
+
+                    if (data.length > 0) {
+                        data.forEach(lance => {
+                            const div = document.createElement('div');
+                            div.classList.add('lance-item'); 
+
+                            div.innerHTML = `
+                                <strong>Usuário:</strong> ${lance.nome}<br>
+                                <strong>Produto:</strong> ${lance.produto}<br>
+                                <strong>Valor:</strong> R$ ${lance.valor_lance.toFixed(2)}
+                            `;
+
+                            lancesSection.appendChild(div);
+                        });
+                    } else {
+                        const p = document.createElement('p');
+                        p.textContent = 'Nenhum lance disponível no momento.';
+                        lancesSection.appendChild(p);
+                    }
+                } else {
+                    console.error('Erro ao atualizar lances:', ajax.statusText);
+                }
+            }
+        };
+
+        ajax.open('GET', 'lances', true);
+        ajax.send(null);
+    }
+}
+
+setInterval(atualizarLances, 10000);
+atualizarLances();
