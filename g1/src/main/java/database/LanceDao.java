@@ -22,9 +22,10 @@ public class LanceDao{
             Class.forName("com.mysql.cj.jdbc.Driver");
     
             // Conectar ao banco de dados
-            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
-            String user = "freedb_nicolasbenitiz";
-            String password = "N7QFUh87habd$WC";
+            //String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            //String user = "freedb_nicolasbenitiz";
+            //String password = "N7QFUh87habd$WC";
+            String connectionUrl = "jdbc:mysql://localhost/portal_lances", user = "root", password = "";
     
             Connection conn = DriverManager.getConnection(connectionUrl, user, password);
     
@@ -56,9 +57,10 @@ public class LanceDao{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Conectar ao banco de dados
-            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
-            String user = "freedb_nicolasbenitiz";
-            String password = "N7QFUh87habd$WC";
+            //String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            //String user = "freedb_nicolasbenitiz";
+            //String password = "N7QFUh87habd$WC";
+            String connectionUrl = "jdbc:mysql://localhost/portal_lances", user = "root", password = "";
 
             Connection conn = DriverManager.getConnection(connectionUrl, user, password);
 
@@ -89,9 +91,10 @@ public class LanceDao{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Conectar ao banco de dados
-            String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
-            String user = "freedb_nicolasbenitiz";
-            String password = "N7QFUh87habd$WC";
+            //String connectionUrl = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances?useSSL=false&serverTimezone=UTC";
+            //String user = "freedb_nicolasbenitiz";
+            //String password = "N7QFUh87habd$WC";
+            String connectionUrl = "jdbc:mysql://localhost/portal_lances", user = "root", password = "";
 
             Connection conn = DriverManager.getConnection(connectionUrl, user, password);
 
@@ -121,12 +124,13 @@ public class LanceDao{
             // Carrega driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             // Dados da conexão
-            String connection = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances";
-            String user = "freedb_nicolasbenitiz";
-            String senha = "N7QFUh87habd$WC";
+            //String connection = "jdbc:mysql://sql.freedb.tech:3306/freedb_portal_lances";
+            //String user = "freedb_nicolasbenitiz";
+            //String senha = "N7QFUh87habd$WC";
+            String connectionUrl = "jdbc:mysql://localhost/portal_lances", user = "root", password = "";
         
             // Criando conexão
-            Connection conn =  DriverManager.getConnection(connection, user, senha);
+            Connection conn =  DriverManager.getConnection(connectionUrl, user, password);
         
             // Cria statement para executar comando SQL
             PreparedStatement preparedStatement = conn.prepareStatement(SEARCH_CODIGO_SQL);

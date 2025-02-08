@@ -30,10 +30,6 @@ function enviarLance(event){
 }
 
 
-function initajax() {
-    return new XMLHttpRequest();
-}
-
 function atualizarLances() {
     const ajax = initajax();
 
@@ -41,25 +37,22 @@ function atualizarLances() {
         ajax.onreadystatechange = function () {
             if (ajax.readyState === 4) {
                 if (ajax.status === 200) {
-                    // Converte a resposta JSON em um objeto JavaScript
+
                     const data = JSON.parse(ajax.responseText);
 
-                    // Atualiza o conteúdo da seção de lances
                     const lancesSection = document.getElementById('lances');
-                    
-                    // Remove o texto padrão
+
                     lancesSection.innerHTML = '<h2>Lances Feitos</h2>';
 
-                    // Itera sobre os lances e cria elementos de exibição
                     if (data.length > 0) {
                         data.forEach(lance => {
                             const div = document.createElement('div');
-                            div.classList.add('lance-item'); // Estilize esta classe no CSS
+                            div.classList.add('lance-item'); 
 
                             div.innerHTML = `
                                 <strong>Usuário:</strong> ${lance.nome}<br>
                                 <strong>Produto:</strong> ${lance.produto}<br>
-                                <strong>Valor:</strong> R$ ${lance.valor_lance.toFixed(2)}
+                                <strong>Valor:</strong> R$ ${lance.valor_lance.toFixed(2)}<br><br>
                             `;
 
                             lancesSection.appendChild(div);
@@ -69,20 +62,22 @@ function atualizarLances() {
                         p.textContent = 'Nenhum lance disponível no momento.';
                         lancesSection.appendChild(p);
                     }
+                    const formElements = document.getElementById("inserirLance").querySelectorAll("input, button");
+                    formElements.forEach(elem => elem.disabled = true);
+
+                    setTimeout(() => {
+                        formElements.forEach(elem => elem.disabled = false);
+                    }, 5000);
                 } else {
                     console.error('Erro ao atualizar lances:', ajax.statusText);
                 }
             }
         };
 
-        // Configura e envia a requisição para o servlet "/lances"
         ajax.open('GET', 'lances', true);
         ajax.send(null);
     }
 }
 
-// Atualiza os lances a cada 10 segundos
-setInterval(atualizarLances, 10000);
-
-// Carrega os lances na abertura da página
+setInterval(atualizarLances, 15000);
 atualizarLances();

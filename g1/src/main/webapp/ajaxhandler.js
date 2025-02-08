@@ -52,7 +52,7 @@ function atualizarLances() {
                             div.innerHTML = `
                                 <strong>Usuário:</strong> ${lance.nome}<br>
                                 <strong>Produto:</strong> ${lance.produto}<br>
-                                <strong>Valor:</strong> R$ ${lance.valor_lance.toFixed(2)}
+                                <strong>Valor:</strong> R$ ${lance.valor_lance.toFixed(2)}<br><br>
                             `;
 
                             lancesSection.appendChild(div);
@@ -62,6 +62,12 @@ function atualizarLances() {
                         p.textContent = 'Nenhum lance disponível no momento.';
                         lancesSection.appendChild(p);
                     }
+                    const formElements = document.getElementById("inserirLance").querySelectorAll("input, button");
+                    formElements.forEach(elem => elem.disabled = true);
+
+                    setTimeout(() => {
+                        formElements.forEach(elem => elem.disabled = false);
+                    }, 5000);
                 } else {
                     console.error('Erro ao atualizar lances:', ajax.statusText);
                 }
@@ -73,5 +79,5 @@ function atualizarLances() {
     }
 }
 
-setInterval(atualizarLances, 10000);
+setInterval(atualizarLances, 15000);
 atualizarLances();

@@ -1,10 +1,7 @@
-﻿package controller;
-
+package controller;
 import database.LanceDao;
 import model.Lance;
-
 import com.google.gson.Gson;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
