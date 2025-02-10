@@ -18,7 +18,7 @@
         <!-- Seção de Usuário -->
         <section id="usuario">
             <h2>Realizar Lance</h2><br>
-            <form id="inserirLance" method="post">
+            <form id="inserirLance" method="post" action="lanceservlet">
                 <label for="nome">Nome de Usuário:</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome de usuário"><br>
 

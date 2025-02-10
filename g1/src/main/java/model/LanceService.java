@@ -43,5 +43,15 @@ public class LanceService {
         }
     }
 
+    public boolean validarValorLance(Lance lance) throws ClassNotFoundException {
+        Float maiorLance = lanceDao.buscarMaiorLancePorProduto(lance.getProduto());
+        // Se não houver nenhum lance anterior, aceita o novo lance
+        if (maiorLance == null) {
+            return true;
+        }
+        // Retorna true somente se o novo lance for estritamente maior que o atual
+        return lance.getValor_lance() > maiorLance;
+    }
+
         
 }

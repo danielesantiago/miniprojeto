@@ -79,5 +79,5 @@ function atualizarLances() {
     }
 }
 
-setInterval(atualizarLances, 15000);
+setInterval(atualizarLances, 45000);
 atualizarLances();
